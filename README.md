@@ -211,3 +211,14 @@ This architecture ensures that **HTU Schedemy** can run continuously for many ye
 
 - This repository contains the **back-end** implementation.
 - The front-end is hosted in a separate [GitHub repository](https://github.com/AhmadAL-Quraan/HTU-Schedemy-Website-front-end) and deployed using AWS Amplify.
+
+
+
+
+
+
+
+
+
+
+
