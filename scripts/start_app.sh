@@ -1,2 +1,2 @@
 #!/bin/bash
-systemctl start schedemy
+systemctl start myApp

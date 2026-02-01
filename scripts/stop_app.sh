@@ -1,2 +1,2 @@
 #!/bin/bash
-systemctl stop schedemy || true
+systemctl stop myApp || true
