@@ -1,218 +1,77 @@
-# HTU Schedemy – Course Scheduling System
+# Deployment
 
-## 📌 Project Overview
+* I want to deploy this project using AWS with best criteria and architecture I could figure out.
+* Ofcourse there is much better ideas, but this is what I have managed to do.
+* There is no code or configuration script for the deployment itself, except ofcourse the code of the project itself, made in *spring boot* (I didn't make it).
 
-At the beginning of each academic semester at **HTU University**, the academic administration faces challenges in organizing course assignments for instructors and teaching assistants (TAs). Managing a large number of courses, instructors, and time slots often leads to scheduling conflicts and inefficient tracking of assignments.
 
-To address this issue, an electronic web-based application named **HTU Schedemy** was developed. The system helps organize and manage the course registration and scheduling process in a centralized, structured, and efficient manner.
 
-The application is divided into multiple pages, where each page supports a specific administrative task to improve academic management.
+# Criteria 
 
----
-
-## 🧩 Application Features
-
-### 🔹 Add Schedule
-- Add courses to the semester schedule
-- Specify:
-  - Course
-  - Lecture time
-  - Assigned instructor
-  - Teaching assistant (TA)
-
-### 🔹 View Schedule
-- Display the complete semester schedule
-- Presented in a clear and organized format
-
-### 🔹 Manage Courses
-- View all available courses
-- Add, update, or remove courses
-
-### 🔹 Manage Instructors
-- Manage instructor information
-- Track instructor course assignments
-
----
-
-## 🏗️ System Architecture Overview
-
-The system follows a **decoupled architecture**, where the front-end and back-end are developed, deployed, and scaled independently.
-
-- **Front-end**: Handles user interaction and UI
-- **Back-end**: Provides RESTful APIs, business logic, and database access
-
-This separation improves scalability, availability, and maintainability.
-
----
-
-## ⚙️ Technology Stack
-
-### 🔹 Back-end
-- Spring Boot
-- RESTful APIs
-- JPA / Hibernate
-- PostgreSQL (recommended for production)
-
-### 🔹 Front-end
-- Hosted in a separate GitHub repository
-- Deployed using AWS Amplify
-
----
-
-## ☁️ Deployment & Infrastructure Requirements
-
-The university requires the system to be deployed as a **production-ready platform** with the following capabilities:
-
-- Front-end deployed using **AWS Amplify**
-- Back-end deployed on **AWS EC2**
-- Custom domain name support
-- High availability and automatic scaling
-- Fast access for users from different geographical regions
-- Continuous monitoring and failure detection
-- Automatic notifications for critical system events
-- Safe application updates without service interruption
-
----
-
-## 🧠 Task 1 – AWS Architecture Design
-
-### 🔹 Proposed AWS Infrastructure
-
-The proposed architecture uses the following AWS services:
-
-### 🌐 Front-end Hosting
-- **AWS Amplify**
-  - Hosts the front-end application
-  - Provides CI/CD integration with GitHub
-  - Automatically builds and deploys the UI
-  - Supports custom domain configuration
-
-### 🖥️ Back-end Hosting
-- **Amazon EC2**
-  - Runs the Spring Boot application
-  - Deployed inside an **Auto Scaling Group** for high availability
-  - Multiple instances ensure fault tolerance
-
-### ⚖️ Load Balancing
-- **Application Load Balancer (ALB)**
-  - Distributes incoming API traffic across EC2 instances
-  - Improves availability and scalability
-  - Enables zero-downtime deployments
-
-### 🌍 Global Access & Performance
-- **Amazon CloudFront**
-  - Acts as a global content delivery network (CDN)
-  - Reduces latency for users in different regions
-  - Improves overall performance
-
-### 🌐 Domain Management
-- **Amazon Route 53**
-  - Manages custom domain names
-  - Routes traffic to Amplify (frontend) and ALB (backend)
-  - Supports health checks and DNS failover
-
-### 📈 Monitoring & Logging
-- **Amazon CloudWatch**
-  - Monitors EC2 instance health and application metrics
-  - Collects logs and system performance data
-  - Triggers alarms on abnormal behavior
-
-### 🚨 Notifications
-- **Amazon SNS (Simple Notification Service)**
-  - Sends notifications when critical events occur
-  - Alerts the technical team about:
-    - Instance failures
-    - Scaling events
-    - Deployment updates
-
----
-
-## 🛠️ Task 2 – Implementation
-
-### 🔹 Front-end Deployment
-- The front-end application is deployed using **AWS Amplify**
-- Amplify is connected directly to the front-end GitHub repository
-- Every push triggers an automatic build and deployment
-- A custom domain is configured using Route 53
-
-### 🔹 Back-end Deployment
-- The Spring Boot application is deployed on **Amazon EC2**
-- Java is installed on EC2 instances
-- The application runs as a persistent service
-- EC2 instances are placed behind an **Application Load Balancer**
-- Auto Scaling Group ensures:
-  - High availability
-  - Automatic scaling during peak registration periods
-
-### 🔹 Continuous Deployment
-- **GitHub Actions** is used to automate backend deployment:
-  - Build the Spring Boot application
-  - Run tests
-  - Deploy the updated application to EC2
-- Enables safe updates without service interruption
-
-```C
-
-You push code to GitHub
-        |
-        v
-GitHub Actions runs
-        |
-        ├── Build Spring Boot JAR
-        ├── Run tests
-        ├── SSH into EC2
-        ├── Upload new JAR
-        └── Restart app
-
-```
+* What criteria I have chosen to deploy my application with:
+	1) High Availability & Reliability: Ensure continuous operation and data integrity.
+	2) Cloud Scalability: Dynamically adapt to varying user loads and data volumes.
+	3) Automated Deployment (CI/CD): Streamline development and deployment with CI/CD pipelines.
+	4) Optimal Performance & Uptime: Deliver swift responses and maintain maximum system uptime.
 
 
 
 
 
----
 
-## 🔄 Zero-Downtime Updates
 
-To ensure uninterrupted service:
-- Multiple EC2 instances are used
-- Load balancer routes traffic only to healthy instances
-- New application versions are deployed gradually
-- Old instances are terminated only after new ones become healthy
+# High-Level Architecture: Request diagram (Runtime flow)
 
----
+* This is the front-end diagram, how the user gonna interact with our system.
 
-## 🔔 Monitoring & Event Handling
+![[request-flow.gif]]
 
-- CloudWatch continuously monitors system health
-- Alarms are triggered for:
-  - CPU or memory spikes
-  - Instance failures
-  - Scaling activities
-- SNS sends immediate notifications to the technical team
 
----
 
-## 🎯 Conclusion
 
-The proposed AWS-based infrastructure provides:
+# High-level architecture: Deployment diagram
 
-- High availability
-- Automatic scaling
-- Global accessibility
-- Continuous monitoring
-- Secure and reliable deployments
+* My intent was to use a fully managed AWS services (except github):
 
-This architecture ensures that **HTU Schedemy** can run continuously for many years while supporting future expansion as the university grows internationally.
+![[deployment-flow.gif]]
 
----
 
-## 📎 Notes
+# High-Level Architecture: Monitoring
 
-- This repository contains the **back-end** implementation.
+![[monitoring.png]]
+
+
+
+# EC2 Setup
+
+Servers are production-ready and managed automatically using Templates which also have user script.
+
+* The point of the user script is to:
+	1) Install docker
+	2) Install **CodeDeploy agent** to fetch the latest image from ECR and trigger docker to work, using the yaml file, **appspec.yml**
+
+
+* Each instance made has **inbound rules (traffic allowed to enter the ec2) + a user data script**:
+
+![[template.png]]
+
+* The user script content:
+![[user_script.png]]
+	
+
+
+# Health checks & Monitoring
+
+* ALB health check can check the instances availability by sending request to specific path on our service.
+![[health_check.png]]
+
+- CloudWatch metrics were used to generate data metrics for each ec2 instance. 
+![[metrics_health_check.png]]
+
+
+
+
 - The front-end is hosted in a separate [GitHub repository](https://github.com/AhmadAL-Quraan/HTU-Schedemy-Website-front-end) and deployed using AWS Amplify.
-
-
 
 
 
