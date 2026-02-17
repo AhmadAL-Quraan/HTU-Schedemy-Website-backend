@@ -33,12 +33,12 @@
 
 * My intent was to use a fully managed AWS services (except github):
 
-![deployment-flow.gif](deployment-flow.gif)
+![deployment-flow.gif](images/deployment-flow.gif)
 
 
 # High-Level Architecture: Monitoring
 
-![monitoring.png](monitoring.png)
+![monitoring.png](images/monitoring.png)
 
 
 
@@ -53,20 +53,20 @@ Servers are production-ready and managed automatically using Templates which als
 
 * Each instance made has **inbound rules (traffic allowed to enter the ec2) + a user data script**:
 
-![template.png](template.png)
+![template.png](images/template.png)
 
 * The user script content:
-![user_script.png](user_script.png)
+![user_script.png](images/user_script.png)
 	
 
 
 # Health checks & Monitoring
 
 * ALB health check can check the instances availability by sending request to specific path on our service.
-![health_check.png](health_check.png)
+![health_check.png](images/health_check.png)
 
 - CloudWatch metrics were used to generate data metrics for each ec2 instance. 
-![metrics_health_check.png](metrics_health_check.png)
+![metrics_health_check.png](images/metrics_health_check.png)
 
 
 
