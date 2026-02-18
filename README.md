@@ -2,7 +2,7 @@
 
 * I want to deploy this project using AWS with best criteria and architecture I could figure out.
 * Ofcourse there is much better ideas, but this is what I have managed to do.
-* There is no code or configuration script for the deployment itself, except ofcourse the code of the project itself, made in *spring boot* (I didn't make it).
+* There is no code or configuration script for the deployment itself, except ofcourse the code of the project, made in *spring boot* (I didn't make it).
 
 
 
